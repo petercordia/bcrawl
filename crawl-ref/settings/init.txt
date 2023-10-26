@@ -11,10 +11,10 @@
 #use_animations -= beam
 
 ##### enable these to wait for full health OR mana when resting
-#rest_wait_percent = 100
-#rest_wait_both = false
+rest_wait_percent = 95
+rest_wait_both = false
 
 tile_full_screen = false
 
 auto_butcher = true
-auto_butcher_max_chunks = 2
+auto_butcher_max_chunks = 5
