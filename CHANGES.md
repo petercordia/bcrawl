@@ -125,6 +125,7 @@
   - v1.35.4: Failed item pickup adds a "pickup" inscription, which is removed if the item is picked up.
   - v1.36.5: Missile attacks are automatically stopped at the targeted square when they could continue to hit a friendly target.
   - v1.36.5: GDR is shown with resistances.
+  - v1.40.1: Vampires will drain blood from corpses while autoexploring if their auto_butcher setting is higher than their hunger state but lower than the maximum setting.
 
 #### Balance Changes
   - The Paralyse spell duration is reduced to 2-4 turns.
@@ -242,6 +243,7 @@
   - v1.15: Steam Barrier (L6 Charms/Fire) creates steam clouds around the player, gives rF+ and rC-, reduces player spell power (-1 enhancer level), and gives an AC bonus proportional to its remaining duration.
   - v1.21: Confusing Touch is re-added as a very different spell. It only works while unarmed without a shield, and has a chance based on your level and enemy HD to confuse hit enemies for 1 to 2 turns. It does not prevent players from dealing melee damage, and does not end when it affects an enemy. Currently, it's exclusive to Martial Artists.
   - v1.39.2: Scorpion Form (L7 Transmutations/Poison) turns the player into a giant scorpion with a powerful stinger aux attack, rPois, +20% HP, and good AC. This form also has a small penalty to spell success and increases spell power (+1 enhancer level) of poison magic.
+  - v1.40: Summon Fire Elementals (L7 Fire/Summoning) summons 2 fire elementals. Their HD scales with spell power, which increases their HP, melee damage, and accuracy.
 
 #### Spell Changes
   - At high spell power, transformations now last forever.
@@ -338,6 +340,12 @@
   - v1.37.1: Icicle Burst has lower accuracy (7 -> 5).
   - v1.37.1: Irradiate causes the Sap Magic status for 8 to 12 turns, which increases spell failure chance when spells are cast.
   - v1.37.1: Summon Ice Beast summon duration is always 2, the same as Summon Mana Viper, instead of 2 to 4.
+  - v1.40: Fire Storm is just Fire instead of Fire/Conjurations.
+  - v1.40: Ignition is Fire/Hexes instead of just Fire.
+  - v1.40: Mana Rupture damage is reduced by about 1/3.
+  - v1.40: The Invisibility spell has less duration scaling with power. It's now equivalent to a potion of invisibility at 80 spell power instead of 40.
+  - v1.40: Scorpion Form gives rF++ and rCorr.
+  - v1.40: Spellforged servitors have rF+ rC+ instead of rF++ rC++.
 
 #### Removed Spells
   - Summon Guardian Golem
@@ -486,7 +494,8 @@
   - v1.38.3: Qazlal's Become The Storm ability still works when the player can't teleport.
   - v1.39: Uskayaw's Grand Finale ability fully refills health as well as mana.
   - v1.39.2: Hepliaklqana ancestor recall no longer fails in the Abyss.
-  - v1.39.2: Hepliaklqana ancestors now respawn almost immediately after Incarnate ends.
+  - v1.40: Hepliaklqana ancestors now respawn immediately when Incarnate ends.
+  - v1.40.1: Lugonu's Bend Space ability is changed: mana cost is increased (1->2), it blinks monsters adjacent to the player's destination instead of their origin, and it has a (Invocations - 5)/25 chance to not cost a turn.
 
 #### New Items
   - The 'Ring of Insulation' gives rElec.
@@ -568,6 +577,7 @@
   - v1.39: Crystal plate armor encumbrance is reduced. (23 -> 22)
   - v1.39.1: Scrolls of magic mapping become scrolls of revelation, which also let the player see through walls for 1 turn.
   - v1.39.2: Large shields have a lower base shield penalty. (16 -> 15)
+  - v1.40.1: Phials of floods never miss.
 
 #### Removed Items
   - Amulet of Harm
@@ -623,6 +633,7 @@
   - v1.36.1: The Staff of Wucad Mu is reworked: it's a +9 vorpal staff with +20 mana and *Drain, and it can be evoked to regain mana by abjuring hostile summons.
   - v1.36.2: The Fencer's Gloves have a higher riposte chance. (1/3 -> 2/3)
   - v1.38.1: Hendrick's Axe no longer has a chance to frenzy on hit. Instead, it can be evoked for 1 mana to make noise and cast a weak Discord with power based on Axes skill. It keeps the chance to blind on hit.
+  - v1.40.1: Eos can corona or blind monsters it hits.
 
 #### Normal Monsters
   - The monster spell 'Twisted Resurrection' has been removed. Deep Elf Death mages now get the spell 'Haunt'.
@@ -757,6 +768,10 @@
   - v1.39: The new "ancient automaton" enemy appears in the Slime Pits. It has a strong melee attack that tramples, and casts Orb of Destruction and Steam Ball.
   - v1.39: The new "wendigo" enemy appears in the Spriggan Forest, Depths, and Swamp. Its bite can cause players to become mesmerized by a visible edible monster.
   - v1.39: The new "greenwood witch" enemy appears in the Spriggan Forest. It can cast Sleep, Polymorph, and Bolt of Draining.
+  - v1.40: Scorpions have rF+.
+  - v1.40: Emperor scorpions have rF++ and rCorr.
+  - v1.40: Naga mages have more HP and a reworked spell set: Mystic Blast, Spectral Cloud, Dimension Anchor, and Haste.
+  - v1.40: Fire elementals are immune to Fire Storm.
 
 #### Unique Monsters
   - Ijyb always has a Polymorph wand, and gets a sling and branded dagger.

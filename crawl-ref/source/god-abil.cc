@@ -1448,7 +1448,9 @@ void elyvilon_remove_divine_vigour()
 
 void hep_remove_incarnate()
 {
-    mprf(MSGCH_DURATION, "Your connection to your ancestor fades.");
+    bool respawned = try_respawn_ancestor(true);
+    if (!respawned)
+        mprf(MSGCH_DURATION, "Your connection to your ancestor fades.");
     you.duration[DUR_INCARNATE] = 0;
     calc_hp();
 }
@@ -1470,6 +1472,7 @@ bool vehumet_supports_spell(spell_type spell)
     case SPELL_VIOLENT_UNRAVELLING:
     case SPELL_INNER_FLAME:
     case SPELL_IGNITION:
+    case SPELL_FIRE_STORM:
         return true;
     case SPELL_DAZZLING_SPRAY:
     case SPELL_SPELLFORGED_SERVITOR:
@@ -3437,13 +3440,25 @@ void lugonu_bend_space()
 {
     const int pow = 4 + skill_bump(SK_INVOCATIONS);
     const bool area_warp = random2(pow) > 9;
+    
+    int chance = you.skill(SK_INVOCATIONS, 10) - 50;
+    bool free_blink = x_chance_in_y(chance, 250);
+    if (free_blink)
+    {
+        you.turn_is_over = false;
+        you.elapsed_time_at_last_input = you.elapsed_time;
+        update_turn_count();
+    }
+    else
+        you.turn_is_over = true;
 
-    mprf("Space bends %saround you!", area_warp ? "sharply " : "");
-
-    if (area_warp)
-        _lugonu_warp_area(pow);
+    mprf("Space bends %saround you%s!", area_warp ? "sharply " : "",
+            free_blink ? ", and you emerge a moment in the past" : "");
 
     uncontrolled_blink(true);
+    
+    if (area_warp)
+        _lugonu_warp_area(pow);
 }
 
 void cheibriados_time_bend(int pow)
@@ -5051,14 +5066,12 @@ spret qazlal_elemental_force(bool fail)
 
 bool qazlal_become_storm()
 {
-    bool friendlies = false;
     vector<coord_def> targets;
     vector<int> weights;
     const int pow = you.skill(SK_INVOCATIONS, 6);
     if (your_spells(SPELL_BLINKBOLT, pow, false) == spret::abort)
         return false;
     viewwindow(); // update vision after movement, before explosions
-    const int upheaval_radius = _upheaval_radius(pow);
     for (radius_iterator ri(you.pos(), 5, C_CIRCLE, LOS_NO_TRANS, true);
          ri; ++ri)
     {
@@ -6528,14 +6541,6 @@ int pakellas_effective_hex_power(int pow)
     return pow;
 }
 
-/**
-obsolete, remove
-*/
-int pakellas_surge_devices()
-{
-    return 0;
-}
-
 static bool _mons_stompable(const monster &mons)
 {
     // Don't hurt your own demonic guardians
@@ -6817,7 +6822,8 @@ spret uskayaw_grand_finale(bool fail)
     if (mons->alive())
         monster_die(*mons, KILL_YOU, NON_MONSTER, false);
 
-    if (!mons->alive())
+    // a lost soul may sneak in here
+    if (!mons->alive() && !monster_at(beam.target))
         move_player_to_grid(beam.target, false);
     else
         mpr("You spring back to your original position.");
@@ -6947,8 +6953,7 @@ spret hepliaklqana_incarnate(bool fail)
     inc_mp(mana_power + roll_dice(2, mana_power));
     
     you.increase_duration(DUR_INCARNATE, dur, 200);
-    int respawn_delay = dur + random_range(3, 25);
-    you.set_duration(DUR_ANCESTOR_DELAY, respawn_delay, 200);
+    you.duration[DUR_ANCESTOR_DELAY] = dur * BASELINE_DELAY + random_range(3, 25);
     calc_hp(true, false);
     you.redraw_armour_class = true;
     
@@ -7406,4 +7411,28 @@ spret wu_jian_wall_jump_ability()
     apply_barbs_damage();
     remove_ice_armour_movement();
     return spret::success;
+}
+
+// Try to respawn a Hepliaklqana ancestor, if possible.
+bool try_respawn_ancestor(bool incarnated)
+{
+     monster *ancestor = create_monster(hepliaklqana_ancestor_gen_data());
+     if (!ancestor)
+         return false;
+
+    if (incarnated)
+    {
+        mprf(MSGCH_DURATION, "%s emerges from your body!",
+             ancestor->name(DESC_YOUR).c_str());
+        add_companion(ancestor);
+    }
+    else
+    {
+        mprf("%s emerges from the mists of memory!",
+             ancestor->name(DESC_YOUR).c_str());
+        add_companion(ancestor);
+        check_place_cloud(CLOUD_MIST, ancestor->pos(), random_range(1,2),
+                          ancestor); // ;)
+    }
+    return true;
 }

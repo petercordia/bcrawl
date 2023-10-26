@@ -1505,11 +1505,10 @@ spret your_spells(spell_type spell, int powc, bool allow_fail,
 
     if (evoked_item)
     {
-        const int surge = pakellas_surge_devices();
-        powc = player_adjust_evoc_power(powc, surge);
+        powc = player_adjust_evoc_power(powc);
         int mp_cost_of_wand = evoked_item->base_type == OBJ_WANDS
                               ? wand_mp_cost() : 0;
-        surge_power_wand(mp_cost_of_wand + surge * 3);
+        surge_power_wand(mp_cost_of_wand);
     }
     else if (allow_fail)
         surge_power(_spell_enhancement(spell));
@@ -1796,6 +1795,9 @@ static spret _do_cast(spell_type spell, int powc, const dist& spd,
 
     case SPELL_SUMMON_HYDRA:
         return cast_summon_hydra(&you, powc, god, fail);
+
+    case SPELL_FIRE_ELEMENTALS:
+        return cast_summon_fire_elementals(&you, powc, god, fail);
 
     case SPELL_SUMMON_MANA_VIPER:
         return cast_summon_mana_viper(powc, god, fail);
