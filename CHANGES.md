@@ -28,6 +28,7 @@
   - v1.39: The Elven Halls branch appears in Lair instead of Orc, and alternates with the Spriggan Forest.
   - v1.39: The Slime Pits branch appears in Orc instead of Lair. Its layout is changed, and it has new endings by nicolae-carpathia.
   - v1.39: Warnings about entering dangerous branches at a low XL now ask for confirmation before entering.
+  - v1.40.2: Spriggan Forest endings have substantially more loot.
 
 #### Backgrounds
   - Venom Mage, Arcane Marksman, and Warper are completely reworked. (based on Doesnty's work)
@@ -126,6 +127,7 @@
   - v1.36.5: Missile attacks are automatically stopped at the targeted square when they could continue to hit a friendly target.
   - v1.36.5: GDR is shown with resistances.
   - v1.40.1: Vampires will drain blood from corpses while autoexploring if their auto_butcher setting is higher than their hunger state but lower than the maximum setting.
+  - v1.40.3: Monster speeds are described more precisely.
 
 #### Balance Changes
   - The Paralyse spell duration is reduced to 2-4 turns.
@@ -171,6 +173,7 @@
   - v1.36.5: Guaranteed damage reduction (GDR) calculation is reworked. It's now normally proportional to sqrt(dexterity + armour_skill).
   - v1.37.1: Base health regeneration of players is now 0.1 + HP/600 per turn. This is higher than before at low levels.
   - v1.39.2: The chance of player aux melee attacks is now scaled by (25 + dexterity \* 2.5)% instead of by ((strength + dexterity) \* 2)%.
+  - v1.40.2: Large explosions are more circular.
 
 #### New Species
   - Fairy has great magic aptitudes, -1 MP costs on all spells, bonus defenses, and can't wear armour.
@@ -244,6 +247,7 @@
   - v1.21: Confusing Touch is re-added as a very different spell. It only works while unarmed without a shield, and has a chance based on your level and enemy HD to confuse hit enemies for 1 to 2 turns. It does not prevent players from dealing melee damage, and does not end when it affects an enemy. Currently, it's exclusive to Martial Artists.
   - v1.39.2: Scorpion Form (L7 Transmutations/Poison) turns the player into a giant scorpion with a powerful stinger aux attack, rPois, +20% HP, and good AC. This form also has a small penalty to spell success and increases spell power (+1 enhancer level) of poison magic.
   - v1.40: Summon Fire Elementals (L7 Fire/Summoning) summons 2 fire elementals. Their HD scales with spell power, which increases their HP, melee damage, and accuracy.
+  - v1.40.2: Blight (L7 Necromancy/Poison) causes targets in an area to become drained, slowed or confused, and poisoned. Even undead and nonliving monsters can be drained by this. Poison from this is equal to that from Poison Arrow.
 
 #### Spell Changes
   - At high spell power, transformations now last forever.
@@ -359,6 +363,7 @@
   - v1.15: Ring of Flames
   - v1.17.1: Alistair's Intoxication
   - v1.21.3: Leda's Liquefaction
+  - v1.40.2: Borgnjor's Revivification
 
 #### Gods
   - Ashenzari now curses items for free, but uncursing items loses a large amount of piety.
@@ -634,6 +639,8 @@
   - v1.36.2: The Fencer's Gloves have a higher riposte chance. (1/3 -> 2/3)
   - v1.38.1: Hendrick's Axe no longer has a chance to frenzy on hit. Instead, it can be evoked for 1 mana to make noise and cast a weak Discord with power based on Axes skill. It keeps the chance to blind on hit.
   - v1.40.1: Eos can corona or blind monsters it hits.
+  - v1.40.3: The Autumn Katana is reworked: it's now a vampiric long blade with 13 base damage and 0.6 min delay at 14 skill, and grants the Wu Jian walljump ability to players that don't worship the Wu Jian Council.
+  - v1.40.3: Leech is reworked: it's now an antimagic short blade with 12 base damage and 0.5 min delay at 16 skill, gives MR+, and restores large amounts of mana when it deals damage.
 
 #### Normal Monsters
   - The monster spell 'Twisted Resurrection' has been removed. Deep Elf Death mages now get the spell 'Haunt'.
@@ -772,6 +779,7 @@
   - v1.40: Emperor scorpions have rF++ and rCorr.
   - v1.40: Naga mages have more HP and a reworked spell set: Mystic Blast, Spectral Cloud, Dimension Anchor, and Haste.
   - v1.40: Fire elementals are immune to Fire Storm.
+  - v1.40.3: Friendly simulacra aren't angered by player attacks.
 
 #### Unique Monsters
   - Ijyb always has a Polymorph wand, and gets a sling and branded dagger.
